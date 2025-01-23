@@ -1,0 +1,132 @@
+# Resumo dos Tópicos
+
+## 1. Serviços de Computação e Máquinas Virtuais do Azure
+- **O que é?**  
+  Máquinas virtuais (VMs) são computadores virtuais na nuvem, usados para hospedar aplicativos, bancos de dados ou sistemas.
+- **O que você aprende?**  
+  - Criar VMs com diferentes sistemas operacionais.  
+  - Escolher o tipo certo de máquina (CPU, RAM, etc.).  
+  - Configurar disco, rede e acesso remoto.
+
+---
+
+## 2. Conjuntos de Disponibilidade de Máquinas Virtuais do Azure
+- **Por que isso importa?**  
+  Garante alta disponibilidade e redundância: se uma máquina falhar, outra assume.
+- **O que você aprende?**  
+  - Criar **Availability Sets** (grupos de VMs com tolerância a falhas).  
+  - Configurar balanceadores de carga.  
+  - Escalar VMs para lidar com picos de demanda.
+
+---
+
+## 3. Área de Trabalho Virtual e Contêineres do Azure
+### Área de Trabalho Virtual (VDI):
+- Criar desktops virtuais no Azure.  
+- Configurar acesso remoto seguro para equipes.  
+
+### Contêineres:
+- O que são contêineres e como usar no Azure.  
+- Criar e gerenciar aplicativos com **Docker** e **Kubernetes**.
+
+---
+
+## 4. Azure Functions e Serviços de Aplicativo do Azure
+### Azure Functions:
+- Criar funções pequenas e específicas que rodam apenas quando chamadas (serverless).  
+- Usar para automação ou tarefas rápidas (ex.: processar um arquivo).
+
+### Serviços de Aplicativo:
+- Hospedar sites e APIs no Azure.  
+- Configurar pipelines **CI/CD** para publicar código automaticamente.
+
+---
+
+## 5. Computação e Rede - Revisão
+- Revisão de conceitos principais:
+  - Máquinas Virtuais, Contêineres e Serverless.  
+  - Configurações de rede (IPs, sub-redes, DNS, firewalls).  
+  - Melhorias em desempenho e segurança.
+
+---
+
+# Passo a Passo: Criando uma VM e Configurando Rede no Azure
+
+## 1. Acesse o Portal do Azure
+- Vá para o portal: [Azure Portal](https://portal.azure.com).
+- Faça login com sua conta.
+
+---
+
+## 2. Criação da Máquina Virtual (VM)
+### **Passo 2.1**: Acesse o serviço de Máquinas Virtuais
+1. No menu do lado esquerdo, clique em **Máquinas Virtuais**.
+2. Clique no botão **+ Criar** e selecione **Máquina Virtual**.
+
+### **Passo 2.2**: Preencha os detalhes básicos
+1. **Assinatura**: Escolha a assinatura do Azure que deseja usar.
+2. **Grupo de Recursos**: 
+   - Se já tiver um grupo, selecione-o.
+   - Caso contrário, clique em **Criar novo** e defina um nome (ex.: `MeuGrupoDeRecursos`).
+3. **Nome da VM**: Insira o nome da sua VM (ex.: `MinhaVM`).
+4. **Região**: Escolha a região (ex.: `East US`).
+5. **Imagem**: Selecione o sistema operacional (ex.: `Windows Server 2022` ou `Ubuntu 20.04`).
+6. **Tamanho da VM**: Escolha o tamanho com base em CPU, RAM e necessidades do projeto.
+
+### **Passo 2.3**: Configuração de autenticação
+1. **Tipo de autenticação**: Escolha entre:
+   - **Senha**: Defina um nome de usuário e uma senha.
+   - **Chave SSH**: Selecione uma chave pública existente ou gere uma nova.
+2. **Portas de entrada pública**: 
+   - Permita acesso via RDP (Windows) ou SSH (Linux).
+
+---
+
+## 3. Configuração de Rede
+### **Passo 3.1**: Criar uma Rede Virtual (VNet)
+1. Na etapa de **Rede** durante a criação da VM:
+   - Clique em **Rede Virtual** e selecione **Criar novo**.
+   - Nomeie a VNet (ex.: `MinhaVNet`).
+   - Configure o intervalo de endereços IP (ex.: `10.0.0.0/16`).
+
+### **Passo 3.2**: Configurar a Sub-rede
+1. Na mesma tela, clique em **Sub-rede** e selecione **Criar nova**.
+2. Nomeie a sub-rede (ex.: `MinhaSubRede`).
+3. Configure o intervalo de endereços IP (ex.: `10.0.0.0/24`).
+
+### **Passo 3.3**: Associar um IP Público
+1. Ainda na seção de Rede:
+   - Certifique-se de que a VM tenha um **IP Público** para acesso externo.
+   - Se necessário, clique em **Criar novo IP público** e dê um nome (ex.: `MeuIPPublico`).
+
+---
+
+## 4. Configurações Adicionais (Opcional)
+1. **Discos**:
+   - Ajuste o tipo e tamanho do disco para a VM.
+2. **Tag**:
+   - Adicione tags para categorizar os recursos (ex.: `Projeto=Dev`).
+
+---
+
+## 5. Finalizar e Criar a VM
+1. Clique no botão **Revisar + Criar**.
+2. Após a validação, clique em **Criar** para provisionar sua VM.
+3. Aguarde alguns minutos até que o processo seja concluído.
+
+---
+
+## 6. Conectando-se à VM
+### **Windows**:
+1. Na VM, clique em **Conectar** > **RDP**.
+2. Baixe o arquivo `.rdp` e use suas credenciais para fazer login.
+
+### **Linux**:
+1. Use um cliente SSH (ex.: `Terminal`, `Putty`).
+2. Conecte-se com o comando:
+   ```bash
+   ssh usuario@<IP-PUBLICO>
+
+
+
+
